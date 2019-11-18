@@ -1,0 +1,35 @@
+version: "3"
+ 
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile-dev
+    volumes:
+      - .:/api
+    working_dir: /api
+    tty: true
+    networks:
+      - voteboo-net
+    depends_on:
+      - db
+
+  db:
+    image: postgres:10-alpine
+    container_name: db-container 
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword1234
+      - PGPASSWORD=mysecretpassword1234
+      - POSTGRES_DB=testdb
+      - DATABASE_HOST=localhost
+    volumes:
+      - $PWD/docker/db/init:/docker-entrypoint-initdb.d
+    networks:
+      - voteboo-net
+
+  networks:
+    voteboo-net:
+      external: true
