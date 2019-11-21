@@ -8,19 +8,20 @@
       <div class="col-md-12">
         <p class="lead">
           {% if a %}
-            vote_id: {{ a.id }} <br>
-            title:{{ a.title }}
-            犬派:{{ a.cand1 }}
-            猫派:{{ a.cand2 }}
+            vote_id: {{ a.vote_id }} <br>
+            title:{{ a.title }} <br>
+            {{a.cand1_name}}:{{ a.cand1_votes }}
+            {{a.cand2_name}}:{{ a.cand2_votes }}
           {% else %}
             {{ message }}
+            <form action="/post" method="post" class="form-inline">
+              <label for="vote_id">投票ID</label>
+              <input type="text" class="form-control" id="vote_id" name="vote_id" placeholder="番号">
+              <button type="submit" class="btn btn-default">送信する</button>
+            </form>
           {% endif %}
         </p>
-        <form action="/post" method="post" class="form-inline">
-          <label for="vote_id">投票ID</label>
-          <input type="text" class="form-control" id="vote_id" name="vote_id" placeholder="番号">
-          <button type="submit" class="btn btn-default">送信する</button>
-        </form>
+        
       </div>
     </div>
   </div>

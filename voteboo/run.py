@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, request, redirect, url_for
+from model import db
 import numpy as np
 import psycopg2
 import psycopg2.extras
@@ -29,15 +30,10 @@ def post():
     if request.method == 'POST':
         # リクエストフォームから「名前」を取得して
         vote_id = request.form['vote_id']
-        
 
-        query = " select " + " id,title,candnum,cand1,cand2 " + " from m_vote " + " where id ="+ vote_id
+        DB = db.get_db()
 
-        dict_cur.execute(query)
-
-        for row in dict_cur:
-            a=row
-            print(row)
+        a = DB.select_one("select * from v_vote")
 
         # index.html をレンダリングする
         return render_template('index.html',

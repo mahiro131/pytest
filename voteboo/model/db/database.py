@@ -14,7 +14,7 @@ class ConnectDatabase():
     #     url = 'postgresql://%s:%s@%s:%s/%s' \
     #             % (user, password, host, port, db)
 
-    def __init__(self, host=None, port='5432', db=None, user=None, password=None):
+    def __init__(self, host=None, port='5432', db='several', user=None, password=None):
 
         url = 'postgresql://%s:%s@%s:%s/%s' \
                 % (user, password, host, port, db)

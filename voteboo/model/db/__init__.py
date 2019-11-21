@@ -3,7 +3,7 @@ from flask import Flask,current_app,g
 from flask.cli import with_appcontext
 
 app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('C:\\Users/Otani.Masahiro/mdsystem/api/pytest/voteboo/config/config_file.cfg')   # ここが微妙。。
+app.config.from_pyfile('C:\\Users/Otani.Masahiro/mdsystem/pytest/voteboo/config/config_file.cfg')   # ここが微妙。。
 
 
 # database.pyからConnectDatabaseのインスタンスを作る
@@ -25,5 +25,3 @@ def get_db(name='default'):
 
 # db = get_db()
 # print(db.select_one("select * from test_table"))
-
-print("__init__.py done")
